@@ -1,0 +1,19 @@
+body {
+  padding: 1rem;
+}
+
+#barcode {
+    height: 142px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    display: block;
+}
