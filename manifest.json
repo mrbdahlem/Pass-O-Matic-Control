@@ -1,0 +1,11 @@
+{
+  "short_name": "Pass-O-Matic",
+  "name": "Pass-O-Matic Control",
+  "icons": {
+      
+  },
+  "start_url": "/",
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "orientation": "portrait-primary"
+}
