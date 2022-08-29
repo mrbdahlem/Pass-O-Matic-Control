@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	 crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="manifest" href="/manifest.json">
+    
+	<title>Pass-O-Matic Control</title>
+    
+	<script src="JsBarcode.all.js"></script>
+</head>
+<body>
+    <main>
+        <svg id="barcode"></svg>
+
+
+        <button class="btn btn-primary" onclick="testPass();">Test Pass</button>
+        
+        <button class="btn btn-primary" onclick="showTime();">Set Time</button>
+    
+        <button class="btn btn-primary" onclick="printActivity();">Print Activity</button>
+    
+        <button class="btn btn-primary" onclick="printRoster();">Print Roster</button>
+    </main>
+
+    <script>        
+        let timeInterval = null;
+
+        function stopTimer() {
+            if (timeInterval != null) {
+                clearInterval(timeInterval);    
+            }
+        }
+
+        function pad(val) {
+            return String(val).padStart(2, 0);
+        }
+        
+        function showTime() {
+            stopTimer();
+            
+            timeInterval = setInterval(function () {
+                let now = new Date();
+                
+                let timecode = "T"
+                
+                timecode += now.getFullYear();
+                timecode += pad(now.getMonth() + 1);
+                timecode += pad(now.getDate());
+                timecode += pad(now.getHours());
+                timecode += pad(now.getMinutes());
+                timecode += pad(now.getSeconds());
+        
+                console.log(timecode);
+                JsBarcode("#barcode", timecode);
+            }, 100);
+
+            return false;
+        }
+
+        function printRoster() {
+            stopTimer();
+
+            JsBarcode("#barcode", "Roster");
+
+            return false;
+        }
+        
+        function printActivity() {
+            stopTimer();
+
+            JsBarcode("#barcode", "Activity");
+
+            return false;
+        }
+
+        function testPass() {
+            stopTimer();
+
+            JsBarcode("#barcode", "123456");
+
+            return false;
+        }
+    </script>
+</body>
